@@ -1,6 +1,6 @@
 using System.Reflection;
 
-namespace MS.MediatR;
+namespace MESK.MediatR;
 
 public sealed class MediatROptions
 {

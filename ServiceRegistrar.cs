@@ -1,6 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 
-namespace MS.MediatR;
+namespace MESK.MediatR;
 
 public static class ServiceRegistrar
 {

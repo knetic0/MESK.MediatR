@@ -1,4 +1,4 @@
-namespace MS.MediatR;
+namespace MESK.MediatR;
 
 public interface INotificationHandler<in TNotification>
     where TNotification : INotification

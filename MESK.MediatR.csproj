@@ -25,6 +25,7 @@
 - Improved code maintainability and testability with clear handler structures.</PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageId>MESK.MediatR</PackageId>
+        <Version>1.0.1</Version>
     </PropertyGroup>
 
     <ItemGroup>

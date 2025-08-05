@@ -1,3 +1,3 @@
-namespace MS.MediatR;
+namespace MESK.MediatR;
 
 public interface INotification { }
