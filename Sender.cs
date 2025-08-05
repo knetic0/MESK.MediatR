@@ -18,7 +18,7 @@ public sealed class Sender : ISender
             return (Task)method.Invoke(handler, new object[] { request, cancellationToken })!;
         };
         
-        var behaviors = (IEnumerable<object>)_serviceProvider.GetService(pipelineType)!;
+        var behaviors = (IEnumerable<object>)(_serviceProvider.GetService(pipelineType) ?? Enumerable.Empty<object>());
         
         var pipeline = behaviors
             .Reverse()
@@ -47,7 +47,7 @@ public sealed class Sender : ISender
             return (Task<TResponse>)method.Invoke(handler, new object[] { request, cancellationToken })!;
         };
         
-        var behaviors = (IEnumerable<object>)_serviceProvider.GetService(pipelineType)!;
+        var behaviors = (IEnumerable<object>)(_serviceProvider.GetService(pipelineType) ?? Enumerable.Empty<object>());
         
         var pipeline = behaviors
             .Reverse()
