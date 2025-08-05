@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MS.MediatR", "MS.MediatR.csproj", "{C5074713-C96C-4B24-AA63-E874A65D4E5A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MESK.MediatR", "MESK.MediatR.csproj", "{C5074713-C96C-4B24-AA63-E874A65D4E5A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
