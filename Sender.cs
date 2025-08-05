@@ -1,3 +1,5 @@
+using Microsoft.Extensions.DependencyInjection;
+
 namespace MESK.MediatR;
 
 public sealed class Sender : ISender
@@ -8,17 +10,20 @@ public sealed class Sender : ISender
     
     public async Task Send(IRequest request, CancellationToken cancellationToken = default)
     {
+        using var scoped = _serviceProvider.CreateScope();
+        var sp = scoped.ServiceProvider;
+        
         var interfaceType = typeof(IRequestHandler<,>).MakeGenericType(request.GetType());
         var pipelineType = typeof(IPipelineBehavior<,>).MakeGenericType(request.GetType());
 
         RequestHandlerDelegate handlerDelegate = () =>
         {
-            var handler = _serviceProvider.GetService(pipelineType);
+            var handler = sp.GetRequiredService(pipelineType);
             var method = interfaceType.GetMethod("Handle")!;
             return (Task)method.Invoke(handler, new object[] { request, cancellationToken })!;
         };
-        
-        var behaviors = (IEnumerable<object>)(_serviceProvider.GetService(pipelineType) ?? Enumerable.Empty<object>());
+
+        var behaviors = (IEnumerable<object>)sp.GetServices(pipelineType);
         
         var pipeline = behaviors
             .Reverse()
@@ -37,17 +42,20 @@ public sealed class Sender : ISender
     public async Task<TResponse> Send<TResponse>(IRequest<TResponse> request,
         CancellationToken cancellationToken = default)
     {
+        using var scoped = _serviceProvider.CreateScope();
+        var sp = scoped.ServiceProvider;
+        
         var interfaceType = typeof(IRequestHandler<,>).MakeGenericType(request.GetType(), typeof(TResponse));
         var pipelineType = typeof(IPipelineBehavior<,>).MakeGenericType(request.GetType(), typeof(TResponse));
 
         RequestHandlerDelegate<TResponse> handlerDelegate = () =>
         {
-            var handler = _serviceProvider.GetService(pipelineType);
+            var handler = sp.GetRequiredService(pipelineType);
             var method = interfaceType.GetMethod("Handle")!;
             return (Task<TResponse>)method.Invoke(handler, new object[] { request, cancellationToken })!;
         };
         
-        var behaviors = (IEnumerable<object>)(_serviceProvider.GetService(pipelineType) ?? Enumerable.Empty<object>());
+        var behaviors = (IEnumerable<object>)sp.GetServices(pipelineType);
         
         var pipeline = behaviors
             .Reverse()
@@ -65,9 +73,12 @@ public sealed class Sender : ISender
 
     public async Task Publish(INotification notification, CancellationToken cancellationToken = default)
     {
+        using var scoped = _serviceProvider.CreateScope();
+        var sp = scoped.ServiceProvider;
+        
         var interfaceType = typeof(INotificationHandler<>).MakeGenericType(notification.GetType());
         
-        var handlers = (IEnumerable<object>)_serviceProvider.GetService(interfaceType)!;
+        var handlers = (IEnumerable<object>)sp.GetService(interfaceType)!;
         
         var tasks = handlers
             .Select(handler =>
