@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>MESK MediatR</Title>
+        <Authors>Mehmet Solak</Authors>
+        <Description>A lightweight, fast, and simple implementation of the Mediator pattern for .NET 8, inspired by MediatR. This library provides in-process messaging with support for request/response, command handling, notification publishing, and pipeline behaviors.</Description>
+        <Copyright>Copyright 2025</Copyright>
+        <PackageProjectUrl>https://github.com/knetic0/MESK.MediatR</PackageProjectUrl>
+        <PackageLicenseUrl>https://github.com/knetic0/MESK.MediatR/blob/master/LICENSE</PackageLicenseUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageIcon>icon.png</PackageIcon>
+        <RepositoryUrl>https://github.com/knetic0/MESK.MediatR</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>mediatr;cqrs;pipeline;</PackageTags>
+        <PackageReleaseNotes>Release Notes
+
+- Added initial implementation of the MediatR library.
+- Enabled support for the Mediator pattern to promote loose coupling and separation of concerns.
+- Introduced request/response handlers for commands and queries.
+- Integrated MediatR with .NET dependency injection.
+- Improved code maintainability and testability with clear handler structures.</PackageReleaseNotes>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <PackageId>MESK.MediatR</PackageId>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <None Include="icon.png" Pack="true" PackagePath="" />
+      <None Include="README.md" Pack="true" PackagePath="" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.7" />
+    </ItemGroup>
+
+</Project>
