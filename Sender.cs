@@ -18,7 +18,7 @@ public sealed class Sender : ISender
 
         RequestHandlerDelegate handlerDelegate = () =>
         {
-            var handler = sp.GetRequiredService(pipelineType);
+            var handler = sp.GetRequiredService(interfaceType);
             var method = interfaceType.GetMethod("Handle")!;
             return (Task)method.Invoke(handler, new object[] { request, cancellationToken })!;
         };
@@ -50,7 +50,7 @@ public sealed class Sender : ISender
 
         RequestHandlerDelegate<TResponse> handlerDelegate = () =>
         {
-            var handler = sp.GetRequiredService(pipelineType);
+            var handler = sp.GetRequiredService(interfaceType);
             var method = interfaceType.GetMethod("Handle")!;
             return (Task<TResponse>)method.Invoke(handler, new object[] { request, cancellationToken })!;
         };
