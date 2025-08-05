@@ -1,4 +1,4 @@
-# MS.MediatR
+# MESK.MediatR
 
 A lightweight, fast, and simple implementation of the Mediator pattern for .NET 8, inspired by MediatR. This library provides in-process messaging with support for request/response, command handling, notification publishing, and pipeline behaviors.
 
@@ -16,7 +16,7 @@ A lightweight, fast, and simple implementation of the Mediator pattern for .NET 
 You can install the package via NuGet Package Manager or by adding it directly to your project file:
 
 ```xml
-<PackageReference Include="MS.MediatR" Version="1.0.0" />
+<PackageReference Include="MESK.MediatR" Version="1.0.0" />
 ```
 
 ## Quick Start
@@ -24,7 +24,7 @@ You can install the package via NuGet Package Manager or by adding it directly t
 ### 1. Register Services
 
 ```csharp
-using MS.MediatR;
+using MESK.MediatR;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,7 +42,7 @@ var app = builder.Build();
 ### 2. Create a Request and Handler
 
 ```csharp
-using MS.MediatR;
+using MESK.MediatR;
 
 // Define a request
 public record GetUserQuery(int Id) : IRequest<User>;
