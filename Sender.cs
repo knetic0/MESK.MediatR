@@ -13,8 +13,8 @@ public sealed class Sender : ISender
         using var scoped = _serviceProvider.CreateScope();
         var sp = scoped.ServiceProvider;
         
-        var interfaceType = typeof(IRequestHandler<,>).MakeGenericType(request.GetType());
-        var pipelineType = typeof(IPipelineBehavior<,>).MakeGenericType(request.GetType());
+        var interfaceType = typeof(IRequestHandler<>).MakeGenericType(request.GetType());
+        var pipelineType = typeof(IPipelineBehavior<>).MakeGenericType(request.GetType());
 
         RequestHandlerDelegate handlerDelegate = () =>
         {
@@ -78,7 +78,7 @@ public sealed class Sender : ISender
         
         var interfaceType = typeof(INotificationHandler<>).MakeGenericType(notification.GetType());
         
-        var handlers = (IEnumerable<object>)sp.GetService(interfaceType)!;
+        var handlers = (IEnumerable<object>)sp.GetServices(interfaceType)!;
         
         var tasks = handlers
             .Select(handler =>

@@ -16,7 +16,7 @@ A lightweight, fast, and simple implementation of the Mediator pattern for .NET 
 You can install the package via NuGet Package Manager or by adding it directly to your project file:
 
 ```xml
-<PackageReference Include="MESK.MediatR" Version="1.0.0" />
+<PackageReference Include="MESK.MediatR" Version="1.0.8" />
 ```
 
 ## Quick Start

@@ -1,4 +1,5 @@
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace MESK.MediatR;
 
@@ -60,7 +61,7 @@ public static class ServiceRegistrar
             var handlerTypes = types
                 .SelectMany(t => t
                     .GetInterfaces()
-                    .Where(t => t.IsGenericType && (t.GetGenericTypeDefinition() == typeof(INotificationHandler<>)))
+                    .Where(i => i.IsGenericType && (i.GetGenericTypeDefinition() == typeof(INotificationHandler<>)))
                     .Select(s => new { Interface = s, Implementation = t }));
 
             foreach (var handler in handlerTypes)
